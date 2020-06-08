@@ -1,51 +1,64 @@
 const Users = require('../models/users'),
-    env = require('../environnement'),
-    jwt = require('jsonwebtoken')
+
     pool = require('../database/mysql')
 
 
+exports.findAll = function(req, res) {
+  Users.findAll(function(err, user) {
+    console.log('controller')
+    if (err)
+    res.send(err);
+    console.log('res', user);
+    res.send(user);
+  });
+};
 
 
-// exports.listUser = (req, res) => {
-//     const query = req.query
+exports.create = function(req, res) {
 
-//     Users.apiQuery(query).select("name email avatar").then(user =>
-//         res.status(201).json(user)
-//     ).catch(
-//         err =>
-//         res.status(500).json(user)
-//     )
-// }
+    const new_user = new Users(req.body);
 
-// exports.createUser = (req, res) => {
-//     const data = (req.body.email === undefined) ? {
-//         email: 'zoubida@zoubida.' + Math.floor(Math.random() * 1000),
-//         password: 'zoubida',
-//         name: 'azerty'
-//     } : req.body
+    //handles null error 
 
-//     data.tokens = [{
-//         token: jwt.sign({
-//             email: data.email
-//         }, env.jwt, {
-//             expiresIn: '72h'
-//         })
-//     }]
+        Users.create(new_user, function(err, new_user) {
+            if (err)
+            res.send(err);
+            res.json({error:false,message:"User added successfully!",data:new_user});
 
-//     Users.create(data).then(user =>
-//         res.status(201).json(user)
-//     ).catch(
-//         err =>
-//         res.status(500).json(err)
-//     )
-// }
-///////////////////////////////////
+    });
+  };
 
-exports.test = (req, res)=> {
 
-  var sql = "SELECT 1"
-  pool.query(sql, function (err) {
-    if (err) throw err;
-    console.log("Result: sdfsdfsf");
-  })
+
+exports.findById = function(req, res) {
+    Users.findById(req.params.id, function(err, user) {
+        if (err)
+        res.send(err);
+        res.json(user);
+    });
+};
+
+// Meme raison que sur le model
+
+
+// exports.update = function(req, res) {
+//     if(req.body.constructor === Object && Object.keys(req.body).length === 0){
+//         res.status(400).send({ error:true, message: 'Please provide all required field' });
+//     }else{
+//         Users.update(req.params.id, new Users(req.body), function(err, user) {
+//             if (err)
+//             res.send(err);
+//             res.json({ error:false, message: 'User successfully updated' });
+//         });
+//     }
+  
+// };
+
+
+exports.delete = function(req, res) {
+  Users.delete( req.params.id, function(err, user) {
+    if (err)
+    res.send(err);
+    res.json({ error:false, message: 'User successfully deleted' });
+  });
 };

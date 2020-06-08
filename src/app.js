@@ -16,8 +16,20 @@ app.use(bodyParser.urlencoded({
     extended: false
 }))
 
+//Root Route
+app.get('/', (req, res) => {
+    res.send("Hello World");
+  });
+
+
+
+
+
+//App Routes * MiddelWare
 app.use('/user', require('./routes/user'))
-app.use('/', require('./routes/book'))
+
+
+
 
 app.listen(env.port, function() {
     console.log("Run serve")
