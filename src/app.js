@@ -1,16 +1,13 @@
-const express = require('express'), // Import express
-    app = express(), //instance express
-    mongoose = require('mongoose'),
-    bodyParser = require('body-parser'),
-    env = require('./environnement'),
-    bd = require('./database/mysql')
+const   express     = require('express'), // Import express
+        cors        = require('cors'),
+        bodyParser  = require('body-parser'),
+        passport    = require('passport'),
+        env         = require('./environnement'),
+        app         = express() //instance express
 
 
-mongoose.connect(env.bdd.mongo.url, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
 
+app.use(cors());
 
 app.use(bodyParser.urlencoded({
     extended: false
@@ -27,6 +24,7 @@ app.get('/', (req, res) => {
 
 //App Routes * MiddelWare
 app.use('/user', require('./routes/user'))
+app.use('/token', require('./routes/tokens'))
 
 
 

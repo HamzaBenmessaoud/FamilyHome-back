@@ -19,5 +19,5 @@ module.exports = {
         pass: '',
         port: '',
     },
-    jwt: 'ZoubidaMangeUneGlace!ViveMoi*$ù1393'
+    jwt: '22Fe/'
 }

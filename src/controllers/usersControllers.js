@@ -1,6 +1,5 @@
-const Users = require('../models/users'),
+const Users = require('../models/users')
 
-    pool = require('../database/mysql')
 
 
 exports.findAll = function(req, res) {
@@ -31,13 +30,24 @@ exports.create = function(req, res) {
 
 
 exports.findById = function(req, res) {
-    Users.findById(req.params.id, function(err, user) {
-        if (err)
-        res.send(err);
-        res.json(user);
-    });
+  Users.findById(req.params.id, function(err, user) {
+    if (err)
+      res.send(err);
+    res.json(user);
+  });
 };
 
+exports.connect = function(req, res){
+  var data ={
+      email : req.body.email,
+      pwd: req.body.pwd
+  }
+  Users.connect(data, function(err, token) {
+    if(err)
+      res.send(err);
+    res.json(token)
+  });
+}
 // Meme raison que sur le model
 
 

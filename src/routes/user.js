@@ -17,4 +17,7 @@ route.get('/:id', usersControllers.findById);
 // Delete a employee with id
 route.delete('/:id', usersControllers.delete);
 
+// Connect user
+route.post('/connect', usersControllers.connect);
+
 module.exports = route
