@@ -9,6 +9,7 @@ const   express     = require('express'), // Import express
 
 app.use(cors());
 
+app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended: false
 }))
