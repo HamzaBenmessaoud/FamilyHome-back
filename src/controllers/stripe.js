@@ -6,7 +6,7 @@ stripe.subscriptions.create(
     {
         customer: '',
         items: [
-        {price: 'price_1GsSqI2eZvKYlo2CAIrUmhu0'},
+        {price: ''},
         ],
     },
     function(err, subscription) {

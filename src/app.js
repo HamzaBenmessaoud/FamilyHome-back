@@ -31,5 +31,5 @@ app.use('/token', require('./routes/tokens'))
 
 
 app.listen(env.port, function() {
-    console.log("Run serve")
+    console.log("The server is running on port", env.port)
 })

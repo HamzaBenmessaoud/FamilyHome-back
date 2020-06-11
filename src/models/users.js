@@ -88,7 +88,7 @@ Users.connect = function(data, res){
                     if(err)
                         console.log(err);
                     if(result){
-                      console.log(tokens.create(info,res));
+                      tokens.create(info,res);
                     }
                 });
 

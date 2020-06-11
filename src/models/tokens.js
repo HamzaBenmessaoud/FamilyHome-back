@@ -35,6 +35,7 @@ Tokens.create = function (data, result) {
                 result(err, null);
             }
             else{
+                console.log(token)
                 result(null,token);
             }
         }); 
