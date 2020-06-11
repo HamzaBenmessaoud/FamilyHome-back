@@ -6,7 +6,6 @@ stripe.subscriptions.create(
     {
         customer: '',
         items: [
-        {price: ''},
         ],
     },
     function(err, subscription) {
