@@ -13,7 +13,7 @@ var Users = function(user){
 };
 
 
-Users.create = function (newUser, result) {    
+Users.createadmin = function (newUser, result) {    
     bcrypt.hash(newUser.password, 10, function(err, hash) {
         if(err) console.log(err);
         pool.query("INSERT INTO user(`id_maison`, `username`, `email`, `password`, `admin`,`avatar`) VALUES ("+null+",'"+newUser.username+"','"+newUser.email+"', '"+hash+"', "+newUser.admin+",'https://randomuser.me/api/portraits/thumb/men/" +Math.floor(Math.random()* Math.floor(80))+ ".jpg')",  function (err, res) {
@@ -27,6 +27,21 @@ Users.create = function (newUser, result) {
         }); 
    });        
 };
+
+Users.create = function (newUser, result) {    
+
+        pool.query("INSERT INTO user(`id_maison`, `username`, `email`, `password`, `admin`,`avatar`) VALUES ("+null+",'"+newUser.username+"','"+newUser.email+"', '000000', "+newUser.admin+",'https://randomuser.me/api/portraits/thumb/men/" +Math.floor(Math.random()* Math.floor(80))+ ".jpg')",  function (err, res) {
+            if(err) {
+                console.log("error: ", err);
+                result(err, null);
+            }
+            else{
+                result(null, res.insertId);
+            }
+        }); 
+         
+};
+
 
 Users.findById = function (id, result) {
     pool.query("Select * from user where id_user = ? ", id, function (err, res) {             

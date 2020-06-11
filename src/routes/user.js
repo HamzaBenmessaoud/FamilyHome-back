@@ -8,6 +8,9 @@ route.get('/findall', usersControllers.findAll);
 // Create a new employee
 route.post('/create', usersControllers.create);
 
+// Create a new employee
+route.post('/newadmin', usersControllers.createadmin);
+
 // Retrieve a single employee with id
 route.get('/:id', usersControllers.findById);
 

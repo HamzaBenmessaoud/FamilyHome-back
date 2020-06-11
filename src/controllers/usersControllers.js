@@ -13,19 +13,36 @@ exports.findAll = function(req, res) {
 };
 
 
+exports.createadmin = function(req, res) {
+
+  const new_user = new Users(req.body);
+
+  //handles null error 
+
+      Users.createadmin(new_user, function(err, new_user) {
+          if (err)
+          res.send(err);
+          res.json({error:false,message:"User added successfully!",data:new_user});
+
+  });
+};
+
 exports.create = function(req, res) {
 
-    const new_user = new Users(req.body);
+  const new_user = {
+    username  : req.body.username,
+    email     : req.body.email,
+    admin     : req.body.admin};
 
-    //handles null error 
+  //handles null error 
 
-        Users.create(new_user, function(err, new_user) {
-            if (err)
-            res.send(err);
-            res.json({error:false,message:"User added successfully!",data:new_user});
+      Users.create(new_user, function(err, new_user) {
+          if (err)
+          res.send(err);
+          res.json({error:false,message:"User added successfully!",data:new_user});
 
-    });
-  };
+  });
+};
 
 
 

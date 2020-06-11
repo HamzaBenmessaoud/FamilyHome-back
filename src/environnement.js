@@ -14,12 +14,13 @@ module.exports = {
         }
     },
     mail: {
-        user: 'familyhome.noreply@gmail.com',
+        user: "familyhome.noreply@gmail.com",
+        pass: "622332233abc",
         clientId: '947453049717-q9f3ksmcad04mssk0hev4vtoubolic8c.apps.googleusercontent.com',
         clientSecret: 'PhkfIIHfSIHKCXzAGg6cCKDP',
-        refreshToken: '1//04cNJGtSSiLxBCgYIARAAGAQSNwF-L9Irlz1JqGXeRa8YKWu--r8HO4QE-xy4GHVasAKEDe1rhLrtmeMlhBp9_p4hXZT2ORlqJT8',
-        accessToken: 'ya29.a0AfH6SMDjF70xJR4eEj5q0IcQBFfMBu8_-Kq7MM0VMD5Q6dSTsh4aB0DSXiwQ7eaQf7TZ0vQ4WN5G1ax2c0MCS_QxgxsTj7_uCV2l27bbzQnPfBEKbC7THR1d7kgqhwJkkOVOErnRozf25sWGPArEYOw2tr07W6Nr6sw'
-  
+        refreshToken: '1//04JjAKcsJ_z9PCgYIARAAGAQSNwF-L9Irik62S3PkQ3aWHd2Wx41LCHbfGiZgdIv0IDHBfIzN2kvELRgIf0R5toxm40jSEzpH0hE',
+        accessToken: 'ya29.a0AfH6SMAHOaUHlnMXCdIue_TJpgHXRIEUur36BrAFz95_jcthf-ODlOCkqiYU9jzkZOeYdL65q6WXvIm4NXZk2emb29cnnHputdrYRCjuoWvzAsffGMLF2x4ScCRNfWtdlX23EGfIEsW_DwUaIE8GSIrZAa9TwNQv3P8'
+    
     },
     jwt: '22Fe/r*bmgê51g568d',
     stripe: {
