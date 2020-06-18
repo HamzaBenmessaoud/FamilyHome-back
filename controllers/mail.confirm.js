@@ -1,9 +1,7 @@
 const   mailer  = require('nodemailer'),
-        env         = require('../environnement'),
-        xoauth2     = require('xoauth2');
+        env         = require('../environnement');
 
-
-
+const mailConfirm = (email,token)=>{
 
 const smtpTransport = mailer.createTransport({
     host: 'smtp.gmail.com',
@@ -24,8 +22,8 @@ const smtpTransport = mailer.createTransport({
 
 const mail = {
     from: "Familyhome.noreply@gmail.com <familyhome.noreply@gmail.com>",
-    to: "familyhome.noreply@gmail.com",
-    subject: "reset1",
+    to: email,
+    subject: "test",
     html: `<head> 
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -103,7 +101,7 @@ const mail = {
                                                             <tbody><tr>
                                                                 <td width="10"></td>
                                                                 <td height="30" align="center" >
-                                                                  <a  style="text-decoration:none" href="https://images-na.ssl-images-amazon.com/images/I/414QINinb9L._AC_SX466_.jpg">Cliquez ici !</a>
+                                                                  <a  style="text-decoration:none" href="https://image.shutterstock.com/image-vector/tu-es-magnifique-french-love-600w-261950834.jpg">Cliquez ici !</a>
                                                                 </td>
                                                                 <td width="10"></td>
                                                             </tr>
@@ -192,3 +190,9 @@ smtpTransport.sendMail(mail, function(error, response){
     }
     smtpTransport.close();
 });
+
+}
+
+module.exports = {
+    mailConfirm : mailConfirm
+}
