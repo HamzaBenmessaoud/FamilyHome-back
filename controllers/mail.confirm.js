@@ -1,7 +1,7 @@
 const   mailer  = require('nodemailer'),
-        env         = require('../environnement');
+        env    = require('../environnement');
 
-const mailConfirm = (email,token)=>{
+const mailConfirm = (req)=>{
 
 const smtpTransport = mailer.createTransport({
     host: 'smtp.gmail.com',
@@ -22,8 +22,8 @@ const smtpTransport = mailer.createTransport({
 
 const mail = {
     from: "Familyhome.noreply@gmail.com <familyhome.noreply@gmail.com>",
-    to: email,
-    subject: "test",
+    to: req.email,
+    subject: "Validation Mail",
     html: `<head> 
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -101,7 +101,7 @@ const mail = {
                                                             <tbody><tr>
                                                                 <td width="10"></td>
                                                                 <td height="30" align="center" >
-                                                                  <a  style="text-decoration:none" href="https://image.shutterstock.com/image-vector/tu-es-magnifique-french-love-600w-261950834.jpg">Cliquez ici !</a>
+                                                                  <a  style="text-decoration:none" href="http://localhost:3005/token/`+req.token+`">Cliquez ici !</a>
                                                                 </td>
                                                                 <td width="10"></td>
                                                             </tr>
@@ -186,7 +186,7 @@ smtpTransport.sendMail(mail, function(error, response){
         console.log("Erreur lors de l'envoie du mail!");
         console.log(error);
     }else{
-        console.log("Mail envoyé avec succès!")
+        console.log("-------------------Mail envoyé avec succès!-----------------------")
     }
     smtpTransport.close();
 });

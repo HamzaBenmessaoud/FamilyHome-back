@@ -1,6 +1,11 @@
 const bcrypt = require('bcrypt'),
-    tokens  = require('./tokens')
-    pool = require('../config/mysql')
+    tokens  = require('./tokens'),
+    env     = require('../environnement'),
+    jwt     = require('jsonwebtoken'),
+    pool = require('../config/mysql'),
+    mail = require('../controllers/mail.confirm'),
+    mailr = require('../controllers/mail.reset')
+
 
 //User object create
 var Users = function(user){
@@ -12,6 +17,18 @@ var Users = function(user){
     this.avatar         = user.avatar;
 };
 
+var ajoutToken= function(new_token){
+    console.log(new_token)
+   tokens.create(new_token,()=>{
+        console.log('...')
+    })
+    if (new_token.type ==="verification") {
+        mail.mailConfirm(new_token)
+    } else {
+        mailr.mailReset(new_token)
+    }
+    
+}
 
 Users.createadmin = function (newUser, result) {    
     bcrypt.hash(newUser.password, 10, function(err, hash) {
@@ -23,6 +40,20 @@ Users.createadmin = function (newUser, result) {
             }
             else{
                 result(null, res.insertId);
+
+                const payload = {
+                    id_user: res.insertId,
+                    email: newUser.email
+                };
+                
+
+                var new_token ={
+                    token : jwt.sign(payload, env.jwt, {expiresIn :'24h'}),
+                    type : 'verification',
+                    email : newUser.email
+                }
+                
+                ajoutToken(new_token)
             }
         }); 
    });        
@@ -37,6 +68,20 @@ Users.create = function (newUser, result) {
             }
             else{
                 result(null, res.insertId);
+
+                const payload = {
+                    id_user: res.insertId,
+                    email: newUser.email
+                };
+                
+
+                var new_token ={
+                    token : jwt.sign(payload, env.jwt, {expiresIn :'24h'}),
+                    type : 'reset',
+                    email : newUser.email
+                }
+                
+                ajoutToken(new_token)
             }
         }); 
          
@@ -99,17 +144,6 @@ Users.connect = function(data, res){
             }          
     });        
 }       
-
-         
-
-
-    
-
-
-
-
-
-
 
 
 Users.delete = function(id, result){

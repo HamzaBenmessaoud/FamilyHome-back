@@ -23,7 +23,6 @@ exports.createadmin = function(req, res) {
           if (err)
           res.send(err);
           res.json({error:false,message:"User added successfully!",data:new_user});
-
   });
 };
 
