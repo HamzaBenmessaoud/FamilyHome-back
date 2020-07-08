@@ -1,5 +1,5 @@
 const Users = require('../models/users')
-
+const { body, validationResult } = require('express-validator');
 
 
 exports.findAll = function(req, res) {
@@ -14,6 +14,8 @@ exports.findAll = function(req, res) {
 
 
 exports.createadmin = function(req, res) {
+
+  
 
   const new_user = new Users(req.body);
 
