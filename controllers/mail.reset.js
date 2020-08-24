@@ -24,7 +24,7 @@ const mailReset = (email,token)=>{
     
     console.log(token);
     const mail = {
-        from: "Familyhome <familyhome.noreply@gmail.com>",
+        from: "fhome.noreply@gmail.com <fhome.noreply@gmail.com>",
         to: email,
         subject: "Mot de passe (ré)initialisation",
         html: `<head> 

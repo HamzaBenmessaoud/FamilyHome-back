@@ -21,8 +21,8 @@ const smtpTransport = mailer.createTransport({
 
 
 const mail = {
-    from: "Familyhome.noreply@gmail.com <familyhome.noreply@gmail.com>",
-    to: req.email,
+    from: "fhome.noreply@gmail.com <fhome.noreply@gmail.com>",
+    to: "hzmbenm@gmail.com",
     subject: "Validation Mail",
     html: `<head> 
     <meta charset="utf-8">

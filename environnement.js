@@ -14,7 +14,7 @@ module.exports = {
         }
     },
     mail: {
-        user: "familyhome.noreply@gmail.com",
+        user: "fhome.noreply@gmail.com",
         pass: "622332233abc",
         clientId: '947453049717-q9f3ksmcad04mssk0hev4vtoubolic8c.apps.googleusercontent.com',
         clientSecret: 'PhkfIIHfSIHKCXzAGg6cCKDP',
