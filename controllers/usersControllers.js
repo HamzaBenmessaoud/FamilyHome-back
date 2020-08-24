@@ -90,3 +90,45 @@ exports.delete = function(req, res) {
     res.json({ error:false, message: 'User successfully deleted' });
   });
 };
+
+
+
+exports.updateUsername = function(req, res) {
+  
+  Users.updateUsername( req.body.token ,req.body.username, function(err, user) {
+    if (err)
+    res.send(err);
+    res.json({ error:false, message: 'User successfully updated' });
+  });
+};
+
+
+exports.updatePwd = function(req, res) {
+  
+  Users.updatePwd( req.body.token ,req.body.pwd, function(err, user) {
+    if (err)
+    res.send(err);
+    res.json({ error:false, message: 'User successfully updated' });
+  });
+};
+
+
+exports.updateNotification = function(req, res) {
+  
+  Users.updateNotification( req.body.token ,req.body.norif, function(err, user) {
+    if (err)
+    res.send(err);
+    res.json({ error:false, message: 'User successfully updated' });
+  });
+};
+
+
+
+exports.updateAvatar = function(req, res) {
+  
+  Users.updateAvatar( req.body.token ,req.body.avatar, function(err, user) {
+    if (err)
+    res.send(err);
+    res.json({ error:false, message: 'User successfully updated' });
+  });
+};

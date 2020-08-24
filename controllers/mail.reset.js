@@ -1,3 +1,4 @@
+
 const   mailer  = require('nodemailer'),
         env         = require('../environnement');
 
@@ -5,7 +6,7 @@ const   mailer  = require('nodemailer'),
 
 
 
-const mailReset = (email,token)=>{
+const mailReset = (token)=>{
     const smtpTransport = mailer.createTransport({
         host: 'smtp.gmail.com',
         port: 465,
@@ -21,11 +22,10 @@ const mailReset = (email,token)=>{
             accessToken: env.mail.accessToken
         }
     });
-    
-    console.log(token);
+
     const mail = {
         from: "fhome.noreply@gmail.com <fhome.noreply@gmail.com>",
-        to: email,
+        to: token.email,
         subject: "Mot de passe (ré)initialisation",
         html: `<head> 
         <meta charset="utf-8">
@@ -50,7 +50,7 @@ const mailReset = (email,token)=>{
                                         </tr>
                                         <tr>
                                             <td align="center" style="font-family: 'Lato', sans-serif; font-size:15px; color:#ffffff; line-height:24px; font-weight: 300;">
-                                                                                        <br>Afin d'attribuer un <small>nouveau</small> mot de passe pour votre<br> compte <b>FamilyHome</b> <br><a href="#" style="text-decoration:none"> cliquez ici!</a>.
+                                                                                        <br>Le <small>nouveau</small> mot de passe pour votre<br> compte <b>FamilyHome</b> est : <b>`+token.pwd+`</b>   <br>Pensez à le changer dés votre connexion.
                                             </td>
                                         </tr>    
                                         <tr>

@@ -16,6 +16,23 @@ var firebase = require("firebase/app");
 require("firebase/auth");
 require("firebase/firestore");
 
+const dbConfig = require('./config/mongo');
+
+const mongoose = require('mongoose');
+
+mongoose.Promise = global.Promise;
+
+// Connecting to the database
+mongoose.connect(dbConfig.url, {
+	useNewUrlParser: true
+}).then(() => {
+    console.log("Successfully connected to the database");    
+}).catch(err => {
+    console.log('Could not connect to the database. Exiting now...', err);
+    process.exit();
+});
+
+
 
 // TODO: Replace the following with your app's Firebase project configuration
 var firebaseConfig = {
@@ -54,6 +71,7 @@ app.get('/', (req, res) => {
 //App Routes * MiddelWare
 app.use('/user', require('./routes/user'))
 app.use('/token', require('./routes/tokens'))
+app.use('/notes', require('./routes/notes'))
 
 
 

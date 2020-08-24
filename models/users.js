@@ -1,3 +1,4 @@
+const cryptoRandomString = require('crypto-random-string');
 const bcrypt = require('bcrypt'),
     tokens  = require('./tokens'),
     env     = require('../environnement'),
@@ -18,7 +19,7 @@ var Users = function(user){
 };
 
 var ajoutToken= function(new_token){
-    console.log(new_token)
+
    tokens.create(new_token,()=>{
         console.log('...')
     })
@@ -33,7 +34,7 @@ var ajoutToken= function(new_token){
 Users.createadmin = function (newUser, result) {    
     bcrypt.hash(newUser.password, 10, function(err, hash) {
         if(err) console.log(err);
-        pool.query("INSERT INTO user(`id_maison`, `username`, `email`, `password`, `admin`,`avatar`) VALUES ("+null+",'"+newUser.username+"','"+newUser.email+"', '"+hash+"', "+newUser.admin+",'https://randomuser.me/api/portraits/thumb/men/" +Math.floor(Math.random()* Math.floor(80))+ ".jpg')",  function (err, res) {
+       pool.query("INSERT INTO user(`id_maison`, `username`, `email`, `password`, `admin`,`avatar`) VALUES ("+null+",'"+newUser.username+"','"+newUser.email+"', '"+hash+"', 1,'https://randomuser.me/api/portraits/thumb/men/" +Math.floor(Math.random()* Math.floor(80))+ ".jpg')",  function (err, res) {
             if(err) {
                 console.log("error: ", err);
                 result(err, null);
@@ -59,9 +60,10 @@ Users.createadmin = function (newUser, result) {
    });        
 };
 
-Users.create = function (newUser, result) {    
+Users.create = function (newUser, result) {   
+    var pwd = cryptoRandomString({length: 10, type: 'base64'});
 
-        pool.query("INSERT INTO user(`id_maison`, `username`, `email`, `password`, `admin`,`avatar`) VALUES ("+null+",'"+newUser.username+"','"+newUser.email+"', '000000', "+newUser.admin+",'https://randomuser.me/api/portraits/thumb/men/" +Math.floor(Math.random()* Math.floor(80))+ ".jpg')",  function (err, res) {
+        pool.query("INSERT INTO user(`id_maison`, `username`, `email`, `password`, `admin`,`avatar`) VALUES ("+null+",'"+newUser.username+"','"+newUser.email+"', '"+pwd+"', "+newUser.admin+",'https://randomuser.me/api/portraits/thumb/men/" +Math.floor(Math.random()* Math.floor(80))+ ".jpg')",  function (err, res) {
             if(err) {
                 console.log("error: ", err);
                 result(err, null);
@@ -78,7 +80,8 @@ Users.create = function (newUser, result) {
                 var new_token ={
                     token : jwt.sign(payload, env.jwt, {expiresIn :'24h'}),
                     type : 'reset',
-                    email : newUser.email
+                    email : newUser.email,
+                    pwd : pwd
                 }
                 
                 ajoutToken(new_token)
@@ -120,13 +123,17 @@ Users.connect = function(data, res){
         pwd    = data.pwd;
         var sql="SELECT id_user, email,password FROM `user` WHERE `email`='"+email+"'";
         pool.query(sql, function(err, results){	   
-            if(results != ""){
+        
+            if(results === undefined){
+                console.log("not a user");
+            }else{
                 let info ={
                     id_user : results[0].id_user,
                     email : results[0].email,
                     password : results[0].password,
                     type : 'connect'
                 }
+                console.log(info)
 
 
                 bcrypt.compare(pwd, info.password, function(err, result) {
@@ -136,11 +143,7 @@ Users.connect = function(data, res){
                       tokens.create(info,res);
                     }
                 });
-
-
-
-            }else{
-            console.log("not a user");
+            
             }          
     });        
 }       
@@ -157,6 +160,8 @@ Users.delete = function(id, result){
         }
     }); 
 };
+
+
 // Pour l'instant pas de update pour user
 
 
@@ -170,4 +175,88 @@ Users.delete = function(id, result){
 //         }
 //     }); 
 // };
+Users.updateUsername = function(token,username, result){
+
+    try {
+        var profil = jwt.verify(token,env.jwt)
+        // console.log(profil)
+    
+        pool.query("UPDATE user SET username=? WHERE id_user =?",[username,profil.id_user],(error, results, fields) => {
+            if (error){
+              return error.message;
+            }
+            return (results.affectedRows);
+          })
+     
+    } catch (erreur) {
+        console.log(erreur.name)
+        result(erreur,null);
+    
+      }
+};
+
+Users.updatePwd = function(token,pwd, result){
+
+    try {
+        var profil = jwt.verify(token,env.jwt)
+        // console.log(profil)
+        bcrypt.hash(pwd, 10, function(err, hash) {
+            if(err) console.log(err);
+        pool.query("UPDATE user SET password=? WHERE id_user =?",[hash,profil.id_user],(error, results, fields) => {
+            if (error){
+              return error.message;
+            }
+            return (results.affectedRows);
+          })
+        });
+    } catch (erreur) {
+        console.log(erreur.name)
+        result(erreur,null);
+    
+      }
+};
+
+Users.updateNotification = function(token,notif, result){
+
+    try {
+        var profil = jwt.verify(token,env.jwt)
+        // console.log(profil)
+    
+        pool.query("UPDATE user SET notification=? WHERE id_user =?",[notif,profil.id_user],(error, results, fields) => {
+            if (error){
+              return error.message;
+            }
+            return (results.affectedRows);
+          })
+     
+    } catch (erreur) {
+        console.log(erreur.name)
+        result(erreur,null);
+    
+      }
+};
+
+Users.updateAvatar = function(token,avatar, result){
+
+    try {
+        var profil = jwt.verify(token,env.jwt)
+        // console.log(profil)
+    
+        pool.query("UPDATE user SET avatar=? WHERE id_user =?",[avatar,profil.id_user],(error, results, fields) => {
+            if (error){
+              return error.message;
+            }
+            return (results.affectedRows);
+          })
+     
+    } catch (erreur) {
+        console.log(erreur.name)
+        result(erreur,null);
+    
+      }
+};
+
+
+
+
 module.exports= Users;

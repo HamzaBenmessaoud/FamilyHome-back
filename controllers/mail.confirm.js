@@ -1,8 +1,10 @@
 const   mailer  = require('nodemailer'),
         env    = require('../environnement');
 
-const mailConfirm = (req)=>{
 
+
+const mailConfirm = (req)=>{
+console.log('debut mail')
 const smtpTransport = mailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,
@@ -19,10 +21,11 @@ const smtpTransport = mailer.createTransport({
     }
 });
 
+console.log('debut connexion compte d envoie mail')
 
 const mail = {
     from: "fhome.noreply@gmail.com <fhome.noreply@gmail.com>",
-    to: "hzmbenm@gmail.com",
+    to: req.email,
     subject: "Validation Mail",
     html: `<head> 
     <meta charset="utf-8">
@@ -172,13 +175,13 @@ const mail = {
                         
                     </tbody></table>
     </body>`,
-    attachments: [
-        {
-            filename:'Calendrier_EEDSI-2019-2021.pdf',
-            filePath: '‪C:/Users/ING-FLUX/Desktop/Imie/Calendrier_EEDSI-2019-2021.pdf',
-            contentType: 'application/pdf'
-        },
-    ]
+    // attachments: [
+    //     {
+    //         filename:'Calendrier_EEDSI-2019-2021.pdf',
+    //         filePath: '‪C:/Users/ING-FLUX/Desktop/Imie/Calendrier_EEDSI-2019-2021.pdf',
+    //         contentType: 'application/pdf'
+    //     },
+    // ]
 }
 
 smtpTransport.sendMail(mail, function(error, response){

@@ -16,10 +16,10 @@ module.exports = {
     mail: {
         user: "fhome.noreply@gmail.com",
         pass: "622332233abc",
-        clientId: '947453049717-q9f3ksmcad04mssk0hev4vtoubolic8c.apps.googleusercontent.com',
-        clientSecret: 'PhkfIIHfSIHKCXzAGg6cCKDP',
-        refreshToken: '1//04JjAKcsJ_z9PCgYIARAAGAQSNwF-L9Irik62S3PkQ3aWHd2Wx41LCHbfGiZgdIv0IDHBfIzN2kvELRgIf0R5toxm40jSEzpH0hE',
-        accessToken: 'ya29.a0AfH6SMAHOaUHlnMXCdIue_TJpgHXRIEUur36BrAFz95_jcthf-ODlOCkqiYU9jzkZOeYdL65q6WXvIm4NXZk2emb29cnnHputdrYRCjuoWvzAsffGMLF2x4ScCRNfWtdlX23EGfIEsW_DwUaIE8GSIrZAa9TwNQv3P8'
+        clientId: '320323557266-5s2o1a79humuda6tkak26us712f9397m.apps.googleusercontent.com',
+        clientSecret: 'miPHu1ZcQYU6OLVOJ1DMYq2x',
+        refreshToken: '1//04V09OLyFgv9RCgYIARAAGAQSNwF-L9Ir_ALM9xevr0iKA3j-xaGoA5lLxAp58fceGz7vBVbz_4hAdjIR70s2Wr4dz08ZLT2b-SI',
+        accessToken: 'ya29.a0AfH6SMBv0GZ3ndA_qCAjGp9-Smlgv532eRvd9TYNRugM148pfMCeCEoCE_Vv_PLznINgUgovYYfjUfLpj2pmGpPney_3xncmY9PSzwNMsoFZrLe_xhoNJg59lc6cxXIqowj2UAZVoj4H9c386HFIpJNFMSB-5_NZ58c'
     
     },
     jwt: '22Fe/r*bmgê51g568d',
