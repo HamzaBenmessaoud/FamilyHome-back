@@ -14,7 +14,7 @@ exports.create = (req, res) => {
         title: req.body.title || "Untitled Note", 
         content: req.body.content,
         idHome: req.body.idHome,
-        autor: Nreq.body.autor
+        autor: req.body.autor
     });
 
     // Save Note in the database

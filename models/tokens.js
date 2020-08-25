@@ -16,16 +16,15 @@ var Tokens = function(token){
 
 Tokens.create =  function (data, result) {  
 
-    // var profil = jwt.verify(token,env.jwt)
+    var token = jwt.sign(data, env.jwt, {expiresIn :'24h'});
     //console.log(profil)
-        pool.query("INSERT INTO `token`(`token`, `type`, `mail_user`) VALUES ('"+data.token+"','"+data.type+"','"+data.email+"')",  function (err, res) {
+        pool.query("INSERT INTO `token`(`token`, `type`, `mail_user`) VALUES ('"+token+"','"+data.type+"','"+data.email+"')",  function (err, res) {
             if(err) {
                 console.log("error: ", err);
                 result(err, null);
             }
             else{
-                console.log("-------------------------TOKENS-------------------",data.token)
-                result(null,{'token':data.token});
+                result(null,{'token':token});
             }
         }); 
 

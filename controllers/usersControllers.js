@@ -94,7 +94,7 @@ exports.delete = function(req, res) {
 
 
 exports.updateUsername = function(req, res) {
-  
+
   Users.updateUsername( req.body.token ,req.body.username, function(err, user) {
     if (err)
     res.send(err);
@@ -115,7 +115,7 @@ exports.updatePwd = function(req, res) {
 
 exports.updateNotification = function(req, res) {
   
-  Users.updateNotification( req.body.token ,req.body.norif, function(err, user) {
+  Users.updateNotification( req.body.token ,req.body.notif, function(err, user) {
     if (err)
     res.send(err);
     res.json({ error:false, message: 'User successfully updated' });

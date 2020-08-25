@@ -179,13 +179,14 @@ Users.updateUsername = function(token,username, result){
 
     try {
         var profil = jwt.verify(token,env.jwt)
-        // console.log(profil)
+  
     
         pool.query("UPDATE user SET username=? WHERE id_user =?",[username,profil.id_user],(error, results, fields) => {
             if (error){
               return error.message;
             }
-            return (results.affectedRows);
+            if(results.affectedRows>0)
+            result(null,{'message':200});
           })
      
     } catch (erreur) {
@@ -206,7 +207,8 @@ Users.updatePwd = function(token,pwd, result){
             if (error){
               return error.message;
             }
-            return (results.affectedRows);
+            if(results.affectedRows>0)
+            result(null,{'message':200});
           })
         });
     } catch (erreur) {
@@ -221,12 +223,13 @@ Users.updateNotification = function(token,notif, result){
     try {
         var profil = jwt.verify(token,env.jwt)
         // console.log(profil)
-    
+    console.log(notif)
         pool.query("UPDATE user SET notification=? WHERE id_user =?",[notif,profil.id_user],(error, results, fields) => {
             if (error){
               return error.message;
             }
-            return (results.affectedRows);
+            if(results.affectedRows>0)
+            result(null,{'message':200});
           })
      
     } catch (erreur) {
@@ -246,7 +249,8 @@ Users.updateAvatar = function(token,avatar, result){
             if (error){
               return error.message;
             }
-            return (results.affectedRows);
+            if(results.affectedRows>0)
+            result(null,{'message':200});
           })
      
     } catch (erreur) {
