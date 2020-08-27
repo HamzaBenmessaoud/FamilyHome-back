@@ -60,7 +60,9 @@ app.use(bodyParser.urlencoded({
 
 //Root Route
 app.get('/', (req, res) => {
+    console.log('/ home path...');
     res.send("Hello World");
+    
   });
 
 
