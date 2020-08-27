@@ -7,10 +7,10 @@ module.exports = {
             url: 'mongodb://localhost:27017/FamilyHome'
         },
         mysql:{
-            host     : 'localhost',
-            user     : 'root',
-            password : '',
-            database : 'familyhome'
+            host     : 'eu-cdbr-west-03.cleardb.net',
+            user     : 'b20cd4f5cb4d69',
+            password : '6dd70be9',
+            database : 'heroku_c5a784335e0444d'
         }
     },
     mail: {
