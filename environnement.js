@@ -8,9 +8,9 @@ module.exports = {
         },
         mysql:{
             host     : 'eu-cdbr-west-03.cleardb.net',
-            user     : 'b20cd4f5cb4d69',
-            password : '6dd70be9',
-            database : 'heroku_c5a784335e0444d'
+            user     : 'b4fb53fc1f2bc1',
+            password : 'ea5eba7c',
+            database : 'heroku_608e8fabd01448f'
         }
     },
     mail: {
