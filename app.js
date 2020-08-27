@@ -1,7 +1,6 @@
 const   express     = require('express'), // Import express
         cors        = require('cors'),
         bodyParser  = require('body-parser'),
-        passport    = require('passport'),
         env         = require('./environnement'),
         app         = express() //instance express
 
