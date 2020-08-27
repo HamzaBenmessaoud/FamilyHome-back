@@ -73,7 +73,7 @@ app.use('/token', require('./routes/tokens'))
 app.use('/notes', require('./routes/notes'))
 
 
-const port = process.env.PORT || env.port;
+const port = process.env.PORT || '5000';
 
 app.listen(port, function() {
     console.log("The server is running on port", port)
