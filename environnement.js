@@ -6,11 +6,11 @@ module.exports = {
         mongo: {
             url: 'mongodb://localhost:27017/FamilyHome'
         },
-        mysql:{
-            host     : 'eu-cdbr-west-03.cleardb.net',
-            user     : 'b4fb53fc1f2bc1',
-            password : 'ea5eba7c',
-            database : 'heroku_608e8fabd01448f'
+        mysql:{ //mysql://bebaeeb304e000:65d01fc9@us-cdbr-east-02.cleardb.com/heroku_a8fc61a7523a00d?reconnect=true
+            host     : 'us-cdbr-east-02.cleardb.com',
+            user     : 'bebaeeb304e000',
+            password : '65d01fc9',
+            database : 'heroku_a8fc61a7523a00d'
         }
     },
     mail: {
