@@ -3,8 +3,9 @@ module.exports = {
     url: 'localhost',
     port: 3005,
     bdd: {
-        mongo: {
-            url: 'mongodb://localhost:27017/FamilyHome'
+        mongo: {// mongodb+srv://familyhome:familyhome@cluster0.ut94h.mongodb.net/<dbname>?retryWrites=true&w=majority
+            //mongodb://heroku_jc1p2fcx:7iktgm6v22d2m7c2niqs08ek5@ds247377.mlab.com:47377/heroku_jc1p2fcx
+            url: 'mongodb://heroku_jc1p2fcx:7iktgm6v22d2m7c2niqs08ek5@ds247377.mlab.com:47377/heroku_jc1p2fcx'
         },
         mysql:{ //mysql://bebaeeb304e000:65d01fc9@us-cdbr-east-02.cleardb.com/heroku_a8fc61a7523a00d?reconnect=true
             host     : 'us-cdbr-east-02.cleardb.com',
