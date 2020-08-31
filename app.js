@@ -1,6 +1,7 @@
 const   express     = require('express'), // Import express
         cors        = require('cors'),
         bodyParser  = require('body-parser'),
+        passport    = require('passport'),
         env         = require('./environnement'),
         app         = express() //instance express
 
@@ -22,11 +23,12 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 // Connecting to the database
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/familyhome', {
+mongoose.connect(dbConfig.url, {
+  useUnifiedTopology: true,
 	useNewUrlParser: true
-}).then(() => {
+    }).then(() => {
     console.log("Successfully connected to the database");    
-}).catch(err => {
+    }).catch(err => {
     console.log('Could not connect to the database. Exiting now...', err);
     process.exit();
 });
@@ -46,13 +48,12 @@ var firebaseConfig = {
     measurementId: "G-DHY1HNJ3CM"
   };
   
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
 
 
 app.use(cors());
-
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended: false
@@ -60,14 +61,8 @@ app.use(bodyParser.urlencoded({
 
 //Root Route
 app.get('/', (req, res) => {
-    console.log('/ home path...');
     res.send("Hello World");
-    
   });
-
-
-
-
 
 //App Routes * MiddelWare
 app.use('/user', require('./routes/user'))
@@ -75,8 +70,12 @@ app.use('/token', require('./routes/tokens'))
 app.use('/notes', require('./routes/notes'))
 
 
-const port = process.env.PORT || '5000';
 
+
+
+
+
+var port = env.port || process.env.PORT;
 app.listen(port, function() {
     console.log("The server is running on port", port)
 })

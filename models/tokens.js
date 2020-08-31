@@ -24,7 +24,7 @@ Tokens.create =  function (data, result) {
                 result(err, null);
             }
             else{
-                result(null,{'token':token});
+                res.result({'token':token});
             }
         }); 
 

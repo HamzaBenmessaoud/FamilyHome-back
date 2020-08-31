@@ -1,3 +1,5 @@
+const env = require('../environnement')
+
 module.exports = {
-    url: 'mongodb://localhost:27017/FamilyHome'
+    url: env.bdd.mongo.url
 }

@@ -85,6 +85,7 @@ Users.create = function (newUser, result) {
                 }
                 
                 ajoutToken(new_token)
+                result.send({"ok":200})
             }
         }); 
          
@@ -141,6 +142,7 @@ Users.connect = function(data, res){
                         console.log(err);
                     if(result){
                       tokens.create(info,res);
+                      
                     }
                 });
             
